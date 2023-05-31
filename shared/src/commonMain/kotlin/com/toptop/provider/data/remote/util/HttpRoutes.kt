@@ -6,6 +6,6 @@ object HttpRoutes {
     private val getApiUrl
         get() = API_URL
 
-    val auth
+    val login
         get() = "$getApiUrl/auth"
 }

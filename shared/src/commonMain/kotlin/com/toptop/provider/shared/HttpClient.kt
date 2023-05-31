@@ -50,7 +50,7 @@ fun HttpClientConfig<*>.configureKtor(
                 )
             }
             refreshTokens {
-                EventChannel.sendEvent(Event.UNAUTHORIZED)
+                EventChannel.sendEvent(Event.Unauthorized)
 
                 BearerTokens(
                     accessToken = tokenStore.getAccessToken(),

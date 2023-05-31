@@ -20,5 +20,5 @@ object EventChannel {
 }
 
 enum class Event {
-    UNAUTHORIZED
+    Unauthorized
 }

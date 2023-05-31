@@ -8,7 +8,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.toptop.provider.android.R
 
-internal val Typography = Typography(
+val Typography = Typography(
     displayLarge = TextStyle(
         fontWeight = FontWeight.Bold,
         fontFamily = fontFamily,

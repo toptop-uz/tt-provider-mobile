@@ -11,7 +11,7 @@ import androidx.compose.ui.text.style.TextOverflow
 @Composable
 fun TTTopAppBar(
     modifier: Modifier = Modifier,
-    title: String,
+    title: String? = null,
     navigationIcon: ImageVector? = null,
     onNavigationClick: () -> Unit = {},
     actions: @Composable RowScope.() -> Unit = {},
@@ -19,12 +19,14 @@ fun TTTopAppBar(
 ) {
     TopAppBar(
         title = {
-            Text(
-                text = title,
-                style = MaterialTheme.typography.titleLarge,
-                overflow = TextOverflow.Ellipsis,
-                maxLines = 1
-            )
+            if (title != null) {
+                Text(
+                    text = title,
+                    style = MaterialTheme.typography.titleLarge,
+                    overflow = TextOverflow.Ellipsis,
+                    maxLines = 1
+                )
+            }
         },
         navigationIcon = {
             if (navigationIcon != null) {

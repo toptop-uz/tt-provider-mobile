@@ -1,4 +1,4 @@
-package com.toptop.provider.android.designsystem.components.extensions
+package com.toptop.provider.android.core.extensions
 
 import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.clickable
@@ -13,7 +13,7 @@ fun Modifier.clickableSingle(
     enabled: Boolean = true,
     onClickLabel: String? = null,
     role: Role? = null,
-    hasIndication: Boolean = false,
+    hasIndication: Boolean = true,
     onClick: () -> Unit
 ) = composed(
     inspectorInfo = debugInspectorInfo {

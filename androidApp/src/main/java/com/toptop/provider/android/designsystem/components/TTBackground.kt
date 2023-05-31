@@ -2,6 +2,7 @@ package com.toptop.provider.android.designsystem.components
 
 import androidx.compose.foundation.layout.displayCutoutPadding
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.LocalAbsoluteTonalElevation
@@ -31,6 +32,7 @@ fun TTBackground(
             .displayCutoutPadding()
             .statusBarsPadding()
             .navigationBarsPadding()
+            .imePadding()
     ) {
         CompositionLocalProvider(LocalAbsoluteTonalElevation provides 0.dp) {
             content()

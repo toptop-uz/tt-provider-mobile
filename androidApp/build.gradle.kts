@@ -90,14 +90,17 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime)
 
     implementation(libs.compose.activity)
+    implementation(libs.compose.navigation)
     implementation(libs.compose.lifecycle)
-    implementation(libs.compose.runtime)
-    implementation(libs.compose.compiler)
+    implementation(libs.compose.viewmodel)
     implementation(libs.compose.material3)
+    implementation(libs.compose.icons)
     implementation(libs.compose.foundation)
     implementation(libs.compose.ui)
     implementation(libs.compose.ui.tooling)
     implementation(libs.compose.ui.tooling.preview)
+    implementation(libs.compose.runtime)
+    implementation(libs.compose.compiler)
 
     implementation(libs.google.material)
     implementation(libs.google.playservices.location)
@@ -109,7 +112,4 @@ dependencies {
 
     implementation(libs.koin.core)
     implementation(libs.koin.android)
-
-    implementation(libs.odyssey.core)
-    implementation(libs.odyssey.compose)
 }
