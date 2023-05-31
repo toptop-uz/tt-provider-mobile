@@ -12,13 +12,13 @@ import androidx.compose.ui.graphics.vector.ImageVector
 fun TTIcon(
     imageVector: ImageVector,
     modifier: Modifier = Modifier,
-    tint: Color = MaterialTheme.colorScheme.onSurface,
+    color: Color = MaterialTheme.colorScheme.onSurface,
 ) {
     Icon(
         imageVector = imageVector,
         contentDescription = null,
         modifier = modifier,
-        tint = tint
+        tint = color
     )
 }
 

@@ -21,9 +21,9 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.toptop.provider.android.core.extensions.clickableSingle
 import com.toptop.provider.android.designsystem.components.TTFilledButton
 import com.toptop.provider.android.designsystem.components.TTIcon
-import com.toptop.provider.android.designsystem.components.extensions.clickableSingle
 import com.toptop.provider.android.designsystem.icon.TTIcons
 import com.toptop.provider.android.designsystem.theme.LocalStrings
 import com.toptop.provider.android.navigation.NavigationTree
@@ -61,7 +61,7 @@ fun SelectLanguageScreen(
                 Text(
                     text = LocalStrings.current.chooseYourLanguage,
                     style = MaterialTheme.typography.titleLarge,
-                    fontWeight = FontWeight.SemiBold
+                    fontWeight = FontWeight.Bold
                 )
 
                 Text(
@@ -107,7 +107,7 @@ fun SelectLanguageScreen(
         item {
             TTFilledButton(
                 text = LocalStrings.current.getStarted,
-                onClick = { onNavigate(NavigationTree.OnBoarding) },
+                onClick = { onNavigate(NavigationTree.Auth) },
                 modifier = Modifier.fillMaxWidth()
             )
         }
@@ -128,12 +128,12 @@ private fun LanguageItem(
             .fillMaxWidth()
             .clip(MaterialTheme.shapes.medium)
             .border(
-                width = 1.dp,
+                width = if (isSelected) (1.5).dp else 1.dp,
                 shape = MaterialTheme.shapes.medium,
                 color = if (isSelected) {
                     MaterialTheme.colorScheme.primary
                 } else {
-                    MaterialTheme.colorScheme.outline.copy(alpha = 0.5f)
+                    MaterialTheme.colorScheme.outline.copy(alpha = 0.35f)
                 }
             )
             .clickableSingle(onClick = onClick)
@@ -160,7 +160,7 @@ private fun LanguageItem(
 
             TTIcon(
                 imageVector = TTIcons.Check,
-                tint = MaterialTheme.colorScheme.primary
+                color = MaterialTheme.colorScheme.primary
             )
         }
     }

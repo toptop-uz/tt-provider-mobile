@@ -20,11 +20,16 @@ class AppStore(private val settings: ObservableSettings) {
         settings[Keys.SELECTED_LANGUAGE] = language.name
     }
 
-    fun getEntryType(): EntryType {
-        return EntryType.valueOf(settings.getString(Keys.ENTRY_TYPE, EntryType.Auth.name))
+    fun getEntry(): EntryType {
+        return try {
+            val entry = settings.getString(Keys.ENTRY, EntryType.Auth.name)
+            EntryType.valueOf(entry)
+        } catch (_: Throwable) {
+            EntryType.Auth
+        }
     }
 
-    fun setEntryType(entryType: EntryType) {
-        settings[Keys.ENTRY_TYPE] = entryType.name
+    fun setEntry(entryType: EntryType) {
+        settings[Keys.ENTRY] = entryType.name
     }
 }

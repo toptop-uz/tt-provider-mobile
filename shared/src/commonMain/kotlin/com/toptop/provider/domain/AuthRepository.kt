@@ -2,8 +2,8 @@ package com.toptop.provider.domain
 
 import com.toptop.provider.data.datastore.TokenStore
 import com.toptop.provider.data.model.common.AuthModel
-import com.toptop.provider.data.remote.request.AuthRequest
-import com.toptop.provider.data.remote.response.AuthResponse
+import com.toptop.provider.data.remote.request.LoginRequest
+import com.toptop.provider.data.remote.response.LoginResponse
 import com.toptop.provider.data.remote.util.ErrorHandler
 import com.toptop.provider.data.remote.util.HttpRoutes
 import com.toptop.provider.data.util.UiState
@@ -27,21 +27,21 @@ class AuthRepository : KoinComponent {
     private val client by inject<HttpClient>()
     private val tokenStore by inject<TokenStore>()
 
-    suspend fun auth(request: AuthRequest): Flow<UiState<Boolean>> {
+    suspend fun login(request: LoginRequest): Flow<UiState<Boolean>> {
         return flow {
             client.post {
-                url(HttpRoutes.auth)
+                url(HttpRoutes.login)
                 contentType(ContentType.Application.Json)
                 setBody(request)
             } onSuccess {
-                val model = bodyAsMapModel<AuthResponse, AuthModel>()
+                val model = bodyAsMapModel<LoginResponse, AuthModel>()
 
                 if (model != null) {
                     tokenStore.setAccessToken(model.accessToken)
 
                     emit(UiState.success(true))
                 } else {
-                    emit(UiState.success(false))
+                    emit(ErrorHandler.resolveMessage())
                 }
             } onFailure { _, state ->
                 emit(state)

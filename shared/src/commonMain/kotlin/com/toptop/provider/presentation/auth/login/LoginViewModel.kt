@@ -1,8 +1,8 @@
-package com.toptop.provider.presentation.auth
+package com.toptop.provider.presentation.auth.login
 
 import com.rickclephas.kmm.viewmodel.coroutineScope
 import com.toptop.provider.data.model.common.TTException
-import com.toptop.provider.data.remote.request.AuthRequest
+import com.toptop.provider.data.remote.request.LoginRequest
 import com.toptop.provider.data.util.onFailure
 import com.toptop.provider.data.util.onSuccess
 import com.toptop.provider.domain.AuthRepository
@@ -13,45 +13,52 @@ import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
-class AuthViewModel : BaseViewModel<AuthState, AuthEvent>(AuthState()), KoinComponent {
+class LoginViewModel : BaseViewModel<LoginState, LoginEvent>(LoginState()), KoinComponent {
 
     private val authRepository by inject<AuthRepository>()
 
-    override fun onEvent(event: AuthEvent) {
+    override fun onEvent(event: LoginEvent) {
         when (event) {
-            is AuthEvent.ChangePhone -> onChangePhone(phone = event.value)
-            is AuthEvent.ChangeTerms -> onChangeTerms(isTermsChecked = event.isChecked)
-            is AuthEvent.Auth -> auth()
+            is LoginEvent.ChangePhone -> onChangePhone(phone = event.value)
+            LoginEvent.ToggleTerms -> onToggleTerms()
+            LoginEvent.Login -> login()
+            LoginEvent.Idle -> setIdle()
         }
     }
 
     private fun onChangePhone(phone: String) {
+        if (phone.length > 9) return
+
         stateData.update {
             it.copy(
                 phone = phone,
-                isEnabled = it.isTermsChecked
+                isEnabled = phone.length == 9 && it.isTermsChecked
             )
         }
     }
 
-    private fun onChangeTerms(isTermsChecked: Boolean) {
+    private fun onToggleTerms() {
         stateData.update {
+            val isChecked = !it.isTermsChecked
+
             it.copy(
-                isTermsChecked = isTermsChecked,
-                isEnabled = isTermsChecked
+                isTermsChecked = isChecked,
+                isEnabled = it.phone.length == 9 && isChecked
             )
         }
     }
 
-    private fun auth() {
+    private fun login() {
         setLoading()
 
-        viewModelScope.coroutineScope.launch {
-            val request = AuthRequest(phone = currentState.phone)
+        val request = LoginRequest(
+            phone = currentState.phone
+        )
 
-            authRepository.auth(request).collectLatest { state ->
+        viewModelScope.coroutineScope.launch {
+            authRepository.login(request).collectLatest { state ->
                 state onSuccess {
-                    setSuccess(data ?: false)
+                    setSuccess(true)
                 } onFailure {
                     setFailure(exception)
                 }
@@ -79,6 +86,16 @@ class AuthViewModel : BaseViewModel<AuthState, AuthEvent>(AuthState()), KoinComp
                 isLoading = false,
                 isSuccess = false,
                 exception = exception
+            )
+        }
+    }
+
+    private fun setIdle() {
+        stateData.update {
+            it.copy(
+                isLoading = false,
+                isSuccess = false,
+                exception = null
             )
         }
     }

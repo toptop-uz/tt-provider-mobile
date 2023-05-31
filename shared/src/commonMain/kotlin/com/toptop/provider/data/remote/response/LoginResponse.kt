@@ -6,12 +6,12 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class AuthResponse(
+data class LoginResponse(
     @SerialName(value = "access_token")
     val accessToken: String? = null
-) : DataMapper<AuthResponse, AuthModel> {
+) : DataMapper<LoginResponse, AuthModel> {
 
-    override fun AuthResponse.mapToDomain(): AuthModel {
+    override fun LoginResponse.mapToDomain(): AuthModel {
         return AuthModel(
             accessToken = accessToken.orEmpty()
         )

@@ -4,7 +4,7 @@ object Keys {
     const val SHARED_PREFS_NAME = "app.preferences"
 
     // App prefs
-    const val ENTRY_TYPE = "KEY_ENTRY_TYPE"
+    const val ENTRY = "KEY_ENTRY"
     const val SELECTED_LANGUAGE = "KEY_SELECTED_LANGUAGE"
 
     // Token prefs

@@ -1,6 +1,7 @@
 package com.toptop.provider.di
 
 import com.toptop.provider.data.datastore.AppStore
+import com.toptop.provider.data.datastore.TokenStore
 import com.toptop.provider.domain.AuthRepository
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.startKoin
@@ -25,6 +26,7 @@ fun initKoin(appDeclaration: KoinAppDeclaration = {}) =
 
 fun storeModule() = module {
     singleOf(::AppStore)
+    singleOf(::TokenStore)
 }
 
 fun databaseModule() = module {

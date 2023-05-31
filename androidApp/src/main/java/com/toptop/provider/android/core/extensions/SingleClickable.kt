@@ -1,4 +1,4 @@
-package com.toptop.provider.android.designsystem.components.extensions
+package com.toptop.provider.android.core.extensions
 
 import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.clickable

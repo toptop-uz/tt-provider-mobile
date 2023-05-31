@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.toptop.provider.android.designsystem.components.extensions.clickableSingle
+import com.toptop.provider.android.core.extensions.clickableSingle
 
 @Composable
 fun TTCard(
