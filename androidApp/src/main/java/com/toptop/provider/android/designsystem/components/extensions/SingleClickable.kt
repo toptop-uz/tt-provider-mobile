@@ -13,7 +13,7 @@ fun Modifier.clickableSingle(
     enabled: Boolean = true,
     onClickLabel: String? = null,
     role: Role? = null,
-    hasIndication: Boolean = false,
+    hasIndication: Boolean = true,
     onClick: () -> Unit
 ) = composed(
     inspectorInfo = debugInspectorInfo {

@@ -9,23 +9,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.toptop.provider.android.designsystem.components.TTBackground
 import com.toptop.provider.android.navigation.NavigationTree
-import com.toptop.provider.android.navigation.navigate
-import ru.alexgladkov.odyssey.compose.local.LocalRootController
 
 @Composable
-fun LoginScreen() {
-    val controller = LocalRootController.current
-
-    TTBackground {
-        Box(
-            modifier = Modifier.fillMaxSize(),
-            contentAlignment = Alignment.Center
-        ) {
-            Button(onClick = {
-                controller.navigate(NavigationTree.SendCode.name)
-            }) {
-                Text(text = "Navigate to Send code")
-            }
+fun LoginScreen(
+    onNavigate: (NavigationTree) -> Unit
+) {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+        Button(onClick = {
+            onNavigate(NavigationTree.SendCode)
+        }) {
+            Text(text = "Navigate to Send code")
         }
     }
 }

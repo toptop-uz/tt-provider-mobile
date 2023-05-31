@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -54,7 +55,11 @@ fun TTFilledButton(
             trailingIcon = trailingIcon != null
         ),
         content = {
-            ProvideTextStyle(value = textStyle) {
+            ProvideTextStyle(
+                value = textStyle.copy(
+                    fontWeight = FontWeight.SemiBold
+                )
+            ) {
                 TTButtonContent(
                     text = text,
                     leadingIcon = leadingIcon,

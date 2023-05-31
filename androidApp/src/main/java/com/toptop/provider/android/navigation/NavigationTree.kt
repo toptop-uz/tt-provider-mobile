@@ -1,6 +1,6 @@
 package com.toptop.provider.android.navigation
 
 enum class NavigationTree {
-    OnBoarding,
+    SelectLanguage, OnBoarding,
     Auth, Login, SendCode
 }

@@ -7,7 +7,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
-import com.toptop.provider.core.resources.TTStrings
 
 @Composable
 fun TTIcon(
@@ -17,7 +16,7 @@ fun TTIcon(
 ) {
     Icon(
         imageVector = imageVector,
-        contentDescription = TTStrings.imageContent,
+        contentDescription = null,
         modifier = modifier,
         tint = tint
     )
@@ -31,7 +30,7 @@ fun TTIcon(
 ) {
     Icon(
         painter = painter,
-        contentDescription = TTStrings.imageContent,
+        contentDescription = null,
         modifier = modifier,
         tint = tint
     )

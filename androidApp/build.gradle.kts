@@ -98,6 +98,7 @@ dependencies {
     implementation(libs.compose.ui)
     implementation(libs.compose.ui.tooling)
     implementation(libs.compose.ui.tooling.preview)
+    implementation(libs.compose.viewmodel)
 
     implementation(libs.google.material)
     implementation(libs.google.playservices.location)
