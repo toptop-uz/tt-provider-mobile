@@ -18,10 +18,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.toptop.provider.android.core.extensions.clickableSingle
 import com.toptop.provider.android.core.extensions.showToast
-import com.toptop.provider.android.designsystem.components.TTFilledButton
 import com.toptop.provider.android.designsystem.components.TTIcon
-import com.toptop.provider.android.designsystem.components.TTPhoneTextField
 import com.toptop.provider.android.designsystem.components.TTTopAppBar
+import com.toptop.provider.android.designsystem.components.buttons.TTFilledButton
+import com.toptop.provider.android.designsystem.components.textFields.TTPhoneTextField
 import com.toptop.provider.android.designsystem.icon.TTIcons
 import com.toptop.provider.android.designsystem.theme.LocalStrings
 import com.toptop.provider.android.navigation.NavigationTree
@@ -89,7 +89,8 @@ fun LoginScreen(
             ) {
                 TTPhoneTextField(
                     value = state.phone,
-                    onValueChange = { onEvent(LoginEvent.ChangePhone(it)) }
+                    onValueChange = { onEvent(LoginEvent.ChangePhone(it)) },
+                    isEnabled = !state.isLoading
                 )
 
                 Row(
@@ -127,10 +128,8 @@ fun LoginScreen(
             TTFilledButton(
                 text = LocalStrings.current.signIn,
                 enabled = state.isEnabled && !state.isLoading,
-                onClick = { onEvent(LoginEvent.Login) },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 20.dp)
+                onClick = { onNavigate(NavigationTree.SendCode) },
+                modifier = Modifier.padding(horizontal = 20.dp)
             )
         }
     }

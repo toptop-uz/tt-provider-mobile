@@ -8,9 +8,11 @@ import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.unit.dp
+import com.toptop.provider.data.model.type.LanguageType
 import com.toptop.provider.resources.stringResourcesEn
+import com.toptop.provider.resources.stringResourcesRu
+import com.toptop.provider.resources.stringResourcesUz
 
 private val LightColorScheme = lightColorScheme(
     primary = md_theme_light_primary,
@@ -82,6 +84,7 @@ private val DarkBackgroundTheme = BackgroundTheme(color = md_theme_dark_backgrou
 
 @Composable
 fun TTTheme(
+    language: LanguageType,
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
@@ -94,9 +97,10 @@ fun TTTheme(
         large = RoundedCornerShape(15.dp),
         extraLarge = RoundedCornerShape(20.dp)
     )
-    val stringResources = when (Locale.current.language) {
-        "UZ" -> stringResourcesEn()
-        else -> stringResourcesEn()
+    val stringResources = when (language) {
+        LanguageType.English -> stringResourcesEn()
+        LanguageType.Russian -> stringResourcesRu()
+        else -> stringResourcesUz()
     }
 
     CompositionLocalProvider(

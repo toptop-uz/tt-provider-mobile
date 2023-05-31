@@ -7,5 +7,8 @@ object HttpRoutes {
         get() = API_URL
 
     val login
-        get() = "$getApiUrl/auth"
+        get() = "$getApiUrl/login"
+
+    val verify
+        get() = "$getApiUrl/verify"
 }

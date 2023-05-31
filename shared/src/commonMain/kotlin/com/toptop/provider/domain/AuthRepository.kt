@@ -1,9 +1,12 @@
 package com.toptop.provider.domain
 
 import com.toptop.provider.data.datastore.TokenStore
-import com.toptop.provider.data.model.common.AuthModel
+import com.toptop.provider.data.model.common.LoginModel
+import com.toptop.provider.data.model.common.VerifyModel
 import com.toptop.provider.data.remote.request.LoginRequest
+import com.toptop.provider.data.remote.request.VerifyRequest
 import com.toptop.provider.data.remote.response.LoginResponse
+import com.toptop.provider.data.remote.response.VerifyResponse
 import com.toptop.provider.data.remote.util.ErrorHandler
 import com.toptop.provider.data.remote.util.HttpRoutes
 import com.toptop.provider.data.util.UiState
@@ -34,11 +37,31 @@ class AuthRepository : KoinComponent {
                 contentType(ContentType.Application.Json)
                 setBody(request)
             } onSuccess {
-                val model = bodyAsMapModel<LoginResponse, AuthModel>()
+                val model = bodyAsMapModel<LoginResponse, LoginModel>()
 
                 if (model != null) {
-                    tokenStore.setAccessToken(model.accessToken)
+                    emit(UiState.success(true))
+                } else {
+                    emit(ErrorHandler.resolveMessage())
+                }
+            } onFailure { _, state ->
+                emit(state)
+            }
+        }.catch { exception ->
+            emit(ErrorHandler.resolveException(exception))
+        }
+    }
 
+    suspend fun verify(request: VerifyRequest): Flow<UiState<Boolean>> {
+        return flow {
+            client.post {
+                url(HttpRoutes.verify)
+                contentType(ContentType.Application.Json)
+                setBody(request)
+            } onSuccess {
+                val model = bodyAsMapModel<VerifyResponse, VerifyModel>()
+
+                if (model != null) {
                     emit(UiState.success(true))
                 } else {
                     emit(ErrorHandler.resolveMessage())

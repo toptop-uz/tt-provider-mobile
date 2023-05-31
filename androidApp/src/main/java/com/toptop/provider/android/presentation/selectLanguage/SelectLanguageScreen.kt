@@ -22,8 +22,8 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.toptop.provider.android.core.extensions.clickableSingle
-import com.toptop.provider.android.designsystem.components.TTFilledButton
 import com.toptop.provider.android.designsystem.components.TTIcon
+import com.toptop.provider.android.designsystem.components.buttons.TTFilledButton
 import com.toptop.provider.android.designsystem.icon.TTIcons
 import com.toptop.provider.android.designsystem.theme.LocalStrings
 import com.toptop.provider.android.navigation.NavigationTree
@@ -107,8 +107,7 @@ fun SelectLanguageScreen(
         item {
             TTFilledButton(
                 text = LocalStrings.current.getStarted,
-                onClick = { onNavigate(NavigationTree.Auth) },
-                modifier = Modifier.fillMaxWidth()
+                onClick = { onNavigate(NavigationTree.Auth) }
             )
         }
     }

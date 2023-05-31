@@ -16,6 +16,11 @@ class TTActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
-        setContent { TTApp(appStore.getEntry()) }
+        setContent {
+            TTApp(
+                entry = appStore.getEntry(),
+                language = appStore.getLanguage()
+            )
+        }
     }
 }

@@ -1,5 +1,5 @@
 package com.toptop.provider.data.model.common
 
-data class AuthModel(
+data class LoginModel(
     val accessToken: String = ""
 )

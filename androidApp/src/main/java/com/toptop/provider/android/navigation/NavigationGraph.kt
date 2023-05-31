@@ -6,6 +6,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
+import com.toptop.provider.android.designsystem.components.TTBackground
 import com.toptop.provider.android.presentation.auth.login.LoginScreen
 import com.toptop.provider.android.presentation.auth.sendCode.SendCodeScreen
 import com.toptop.provider.android.presentation.selectLanguage.SelectLanguageScreen
@@ -20,11 +21,13 @@ fun NavGraphBuilder.selectLanguageGraph(
         val viewModel = viewModel<SelectLanguageViewModel>()
         val state = viewModel.state.collectAsStateWithLifecycle().value
 
-        SelectLanguageScreen(
-            state = state,
-            onEvent = viewModel::onEvent,
-            onNavigate = controller::navigateTo
-        )
+        TTBackground {
+            SelectLanguageScreen(
+                state = state,
+                onEvent = viewModel::onEvent,
+                onNavigate = controller::navigateTo
+            )
+        }
     }
 }
 
@@ -39,21 +42,25 @@ fun NavGraphBuilder.authGraph(
             val viewModel = viewModel<LoginViewModel>()
             val state = viewModel.state.collectAsStateWithLifecycle().value
 
-            LoginScreen(
-                state = state,
-                onEvent = viewModel::onEvent,
-                onNavigate = controller::navigateTo
-            )
+            TTBackground {
+                LoginScreen(
+                    state = state,
+                    onEvent = viewModel::onEvent,
+                    onNavigate = controller::navigateTo
+                )
+            }
         }
         composable(route = NavigationTree.SendCode.name) {
             val viewModel = viewModel<SendCodeViewModel>()
             val state = viewModel.state.collectAsStateWithLifecycle().value
 
-            SendCodeScreen(
-                state = state,
-                onEvent = viewModel::onEvent,
-                onNavigate = {}
-            )
+            TTBackground {
+                SendCodeScreen(
+                    state = state,
+                    onEvent = viewModel::onEvent,
+                    onNavigate = {}
+                )
+            }
         }
     }
 }

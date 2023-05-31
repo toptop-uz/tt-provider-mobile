@@ -58,7 +58,7 @@ class LoginViewModel : BaseViewModel<LoginState, LoginEvent>(LoginState()), Koin
         viewModelScope.coroutineScope.launch {
             authRepository.login(request).collectLatest { state ->
                 state onSuccess {
-                    setSuccess(true)
+                    setSuccess(data ?: false)
                 } onFailure {
                     setFailure(exception)
                 }

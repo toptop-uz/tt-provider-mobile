@@ -3,7 +3,6 @@ package com.toptop.provider.android.navigation
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -11,17 +10,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.toptop.provider.android.designsystem.theme.TTTheme
 import com.toptop.provider.data.model.type.EntryType
+import com.toptop.provider.data.model.type.LanguageType
 
-@OptIn(
-    ExperimentalLayoutApi::class,
-    ExperimentalMaterial3Api::class
-)
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun TTApp(
     entry: EntryType,
+    language: LanguageType,
     appState: TTAppState = rememberTTAppState()
 ) {
-    TTTheme {
+    TTTheme(language = language) {
         Scaffold(
             containerColor = Color.Transparent,
             contentColor = MaterialTheme.colorScheme.onBackground,

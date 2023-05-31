@@ -1,6 +1,6 @@
 package com.toptop.provider.android.designsystem.theme
 
 import androidx.compose.runtime.staticCompositionLocalOf
-import com.toptop.provider.resources.stringResourcesEn
+import com.toptop.provider.resources.stringResourcesUz
 
-val LocalStrings = staticCompositionLocalOf { stringResourcesEn() }
+val LocalStrings = staticCompositionLocalOf { stringResourcesUz() }

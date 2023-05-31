@@ -14,6 +14,12 @@ class SelectLanguageViewModel :
 
     private val appStore by inject<AppStore>()
 
+    init {
+        stateData.update {
+            it.copy(selectedLanguage = appStore.getLanguage())
+        }
+    }
+
     override fun onEvent(event: SelectLanguageEvent) {
         when (event) {
             is SelectLanguageEvent.SelectLanguage -> onSelectLanguage(event.value)
