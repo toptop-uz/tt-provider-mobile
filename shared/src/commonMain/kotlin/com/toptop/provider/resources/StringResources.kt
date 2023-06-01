@@ -12,6 +12,8 @@ data class StringResources(
     val signIn: String,
     val yourNumber: String,
     val acceptTerms: String,
+    val termsOfService: String,
+    val privacyPolicy: String,
     val verifyYourAccount: String,
     val weHaveSentCode: String,
     val didntReceiveCode: String,
@@ -28,21 +30,6 @@ data class StringResources(
 }
 
 fun stringResourcesUz() = StringResources(
-    chooseYourLanguage = "O'zingiz yoqtirgan tilni tanlang",
-    pleaseSelectLanguage = "Please select your language",
-    getStarted = "Get started",
-    youWillReceiveCode = "You will receive a 4 digit code to verify next",
-    signIn = "Sign in",
-    yourNumber = "Your Number",
-    acceptTerms = "I accept the Terms of Service as well as Privacy Policy",
-    verifyYourAccount = "Verify Your Account",
-    weHaveSentCode = "We have sent a 4 digit code to the number {phone}",
-    didntReceiveCode = "Didn't receive OTP code?",
-    resendCode = "Resend Code",
-    resendCodeIn = "Resend code in {time}",
-)
-
-fun stringResourcesEn() = StringResources(
     chooseYourLanguage = "Choose Your Preferred Language",
     pleaseSelectLanguage = "Please select your language",
     getStarted = "Get started",
@@ -50,21 +37,8 @@ fun stringResourcesEn() = StringResources(
     signIn = "Sign in",
     yourNumber = "Your Number",
     acceptTerms = "I accept the Terms of Service as well as Privacy Policy",
-    verifyYourAccount = "Verify Your Account",
-    weHaveSentCode = "We have sent a 4 digit code to the number {phone}",
-    didntReceiveCode = "Didn't receive OTP code?",
-    resendCode = "Resend Code",
-    resendCodeIn = "Resend code in {time}",
-)
-
-fun stringResourcesRu() = StringResources(
-    chooseYourLanguage = "Выберите предпочитаемый язык",
-    pleaseSelectLanguage = "Please select your language",
-    getStarted = "Get started",
-    youWillReceiveCode = "You will receive a 4 digit code to verify next",
-    signIn = "Sign in",
-    yourNumber = "Your Number",
-    acceptTerms = "I accept the Terms of Service as well as Privacy Policy",
+    termsOfService = "Terms of Service",
+    privacyPolicy = "Privacy Policy",
     verifyYourAccount = "Verify Your Account",
     weHaveSentCode = "We have sent a 4 digit code to the number {phone}",
     didntReceiveCode = "Didn't receive OTP code?",

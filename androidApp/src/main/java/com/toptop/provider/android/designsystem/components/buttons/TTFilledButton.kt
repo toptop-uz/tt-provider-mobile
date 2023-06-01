@@ -3,7 +3,6 @@ package com.toptop.provider.android.designsystem.components.buttons
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.material3.Button
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ProvideTextStyle
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -11,6 +10,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import com.toptop.provider.android.designsystem.theme.ColorOnPrimary
+import com.toptop.provider.android.designsystem.theme.ColorPrimary
+import com.toptop.provider.android.designsystem.theme.TitleMedium
+import com.toptop.provider.android.designsystem.theme.TitleSmall
 
 @Composable
 fun TTFilledButton(
@@ -18,13 +21,9 @@ fun TTFilledButton(
     text: String,
     enabled: Boolean = true,
     small: Boolean = false,
-    containerColor: Color = MaterialTheme.colorScheme.primary,
-    contentColor: Color = MaterialTheme.colorScheme.onPrimary,
-    textStyle: TextStyle = if (small) {
-        MaterialTheme.typography.titleSmall
-    } else {
-        MaterialTheme.typography.titleMedium
-    },
+    containerColor: Color = ColorPrimary,
+    contentColor: Color = ColorOnPrimary,
+    textStyle: TextStyle = if (small) TitleSmall else TitleMedium,
     leadingIcon: ImageVector? = null,
     trailingIcon: ImageVector? = null,
     onClick: () -> Unit
@@ -59,7 +58,8 @@ fun TTFilledButton(
                 TTButtonContent(
                     text = text,
                     leadingIcon = leadingIcon,
-                    trailingIcon = trailingIcon
+                    trailingIcon = trailingIcon,
+                    contentColor = contentColor
                 )
             }
         }

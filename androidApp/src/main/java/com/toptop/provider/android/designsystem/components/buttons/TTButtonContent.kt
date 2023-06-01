@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import com.toptop.provider.android.designsystem.components.TTIcon
@@ -15,7 +16,8 @@ import com.toptop.provider.android.designsystem.components.TTIcon
 fun RowScope.TTButtonContent(
     text: String,
     leadingIcon: ImageVector? = null,
-    trailingIcon: ImageVector? = null
+    trailingIcon: ImageVector? = null,
+    contentColor: Color
 ) {
     if (leadingIcon != null) {
         Box(
@@ -23,7 +25,10 @@ fun RowScope.TTButtonContent(
                 maxHeight = TTButtonDefaults.ButtonIconSize
             )
         ) {
-            TTIcon(imageVector = leadingIcon)
+            TTIcon(
+                imageVector = leadingIcon,
+                color = contentColor
+            )
         }
     }
 
@@ -48,7 +53,10 @@ fun RowScope.TTButtonContent(
 
     if (trailingIcon != null) {
         Box(Modifier.sizeIn(maxHeight = TTButtonDefaults.ButtonIconSize)) {
-            TTIcon(imageVector = trailingIcon)
+            TTIcon(
+                imageVector = trailingIcon,
+                color = contentColor
+            )
         }
     }
 }

@@ -1,12 +1,7 @@
 package com.toptop.provider.android.designsystem.components
 
-import androidx.compose.foundation.layout.displayCutoutPadding
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.imePadding
-import androidx.compose.foundation.layout.navigationBarsPadding
-import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.LocalAbsoluteTonalElevation
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -27,12 +22,7 @@ fun TTBackground(
     Surface(
         color = if (color == Color.Unspecified) Color.Transparent else color,
         tonalElevation = if (tonalElevation == Dp.Unspecified) 0.dp else tonalElevation,
-        modifier = modifier
-            .fillMaxSize()
-            .displayCutoutPadding()
-            .statusBarsPadding()
-            .navigationBarsPadding()
-            .imePadding()
+        modifier = modifier.fillMaxSize()
     ) {
         CompositionLocalProvider(LocalAbsoluteTonalElevation provides 0.dp) {
             content()

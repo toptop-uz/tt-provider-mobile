@@ -8,20 +8,25 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.toptop.provider.android.core.extensions.vibrateFeedback
+import com.toptop.provider.android.designsystem.theme.ColorDivider
+import com.toptop.provider.android.designsystem.theme.ColorOnBackground
+import com.toptop.provider.android.designsystem.theme.ColorOutline
+import com.toptop.provider.android.designsystem.theme.ColorPrimary
+import com.toptop.provider.android.designsystem.theme.HeadlineLarge
+import com.toptop.provider.android.designsystem.theme.ShapeMedium
 
 @Composable
 fun TTOtpTextField(
@@ -30,7 +35,7 @@ fun TTOtpTextField(
     onValueChange: (String) -> Unit,
     count: Int = 4,
     isError: Boolean = false,
-    isEnabled: Boolean = true,
+    isEnabled: Boolean = true
 ) {
     BasicTextField(
         modifier = modifier.vibrateFeedback(isError = isError),
@@ -78,27 +83,34 @@ private fun CharView(
     Text(
         modifier = Modifier
             .width(54.dp)
-            .clip(shape = MaterialTheme.shapes.medium)
-            .background(
-                color = MaterialTheme.colorScheme.primary.copy(alpha = 0.1f)
-            )
+            .clip(ShapeMedium)
+            .background(ColorOutline.copy(alpha = 0.1f))
             .border(
-                width = 1.dp,
+                width = if (char.isEmpty()) 1.dp else (1.5).dp,
                 color = if (char.isEmpty()) {
-                    Color.Transparent
+                    ColorDivider
                 } else {
-                    MaterialTheme.colorScheme.primary
+                    ColorPrimary
                 },
-                shape = MaterialTheme.shapes.medium
+                shape = ShapeMedium
             )
             .padding(vertical = 12.dp),
         text = char,
-        style = MaterialTheme.typography.headlineLarge,
+        style = HeadlineLarge,
         color = if (char.isEmpty()) {
-            MaterialTheme.colorScheme.onBackground
+            ColorOnBackground
         } else {
-            MaterialTheme.colorScheme.primary
+            ColorPrimary
         },
         textAlign = TextAlign.Center
+    )
+}
+
+@Preview(showBackground = true)
+@Composable
+fun TTOtpTextFieldPreview() {
+    TTOtpTextField(
+        value = "12",
+        onValueChange = {}
     )
 }

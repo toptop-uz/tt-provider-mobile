@@ -2,12 +2,12 @@ package com.toptop.provider.android.presentation.auth.login
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.toptop.provider.android.core.extensions.clickableSingle
 import com.toptop.provider.android.core.extensions.showToast
@@ -23,8 +24,14 @@ import com.toptop.provider.android.designsystem.components.TTTopAppBar
 import com.toptop.provider.android.designsystem.components.buttons.TTFilledButton
 import com.toptop.provider.android.designsystem.components.textFields.TTPhoneTextField
 import com.toptop.provider.android.designsystem.icon.TTIcons
+import com.toptop.provider.android.designsystem.theme.BodyLarge
+import com.toptop.provider.android.designsystem.theme.BodyMedium
+import com.toptop.provider.android.designsystem.theme.ColorOutline
+import com.toptop.provider.android.designsystem.theme.ColorPrimary
 import com.toptop.provider.android.designsystem.theme.LocalStrings
+import com.toptop.provider.android.designsystem.theme.TitleLarge
 import com.toptop.provider.android.navigation.NavigationTree
+import com.toptop.provider.android.presentation.components.HyperlinkText
 import com.toptop.provider.presentation.auth.login.LoginEvent
 import com.toptop.provider.presentation.auth.login.LoginState
 
@@ -52,7 +59,8 @@ fun LoginScreen(
     }
 
     LazyColumn(
-        verticalArrangement = Arrangement.spacedBy(32.dp)
+        verticalArrangement = Arrangement.spacedBy(32.dp),
+        contentPadding = PaddingValues(bottom = 20.dp)
     ) {
         item {
             TTTopAppBar(
@@ -69,14 +77,14 @@ fun LoginScreen(
             ) {
                 Text(
                     text = LocalStrings.current.signIn,
-                    style = MaterialTheme.typography.titleLarge,
+                    style = TitleLarge,
                     fontWeight = FontWeight.Bold
                 )
 
                 Text(
                     text = LocalStrings.current.youWillReceiveCode,
-                    style = MaterialTheme.typography.bodyLarge,
-                    color = MaterialTheme.colorScheme.outline
+                    style = BodyLarge,
+                    color = ColorOutline
                 )
             }
         }
@@ -110,16 +118,25 @@ fun LoginScreen(
                             TTIcons.CheckCircleOutline
                         },
                         color = if (state.isTermsChecked) {
-                            MaterialTheme.colorScheme.primary
+                            ColorPrimary
                         } else {
-                            MaterialTheme.colorScheme.outline
+                            ColorOutline
                         }
                     )
 
-                    Text(
-                        text = LocalStrings.current.acceptTerms,
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.outline
+                    HyperlinkText(
+                        fullText = LocalStrings.current.acceptTerms,
+                        linkText = listOf(
+                            LocalStrings.current.termsOfService,
+                            LocalStrings.current.privacyPolicy
+                        ),
+                        hyperlinks = listOf(
+                            "https://www.google.com/",
+                            "https://www.google.com/",
+                        ),
+                        style = BodyMedium.copy(
+                            color = ColorOutline
+                        )
                     )
                 }
             }
@@ -133,4 +150,14 @@ fun LoginScreen(
             )
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun LoginScreenPreview() {
+    LoginScreen(
+        state = LoginState(),
+        onEvent = {},
+        onNavigate = {}
+    )
 }

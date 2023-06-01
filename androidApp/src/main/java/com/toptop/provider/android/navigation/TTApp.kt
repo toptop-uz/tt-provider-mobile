@@ -8,6 +8,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import com.toptop.provider.android.designsystem.theme.ColorOnBackground
 import com.toptop.provider.android.designsystem.theme.TTTheme
 import com.toptop.provider.data.model.type.EntryType
 import com.toptop.provider.data.model.type.LanguageType
@@ -22,7 +23,7 @@ fun TTApp(
     TTTheme(language = language) {
         Scaffold(
             containerColor = Color.Transparent,
-            contentColor = MaterialTheme.colorScheme.onBackground,
+            contentColor = ColorOnBackground,
             bottomBar = {
 //                TTBottomBar(
 //                    destinations = appState.topLevelDestinations,
@@ -83,7 +84,7 @@ fun TTApp(
 //                        label = {
 //                            Text(
 //                                text = stringResource(destination.iconTextId),
-//                                style = MaterialTheme.typography.bodyMedium,
+//                                style = BodyMedium,
 //                                fontSize = 13.sp
 //                            )
 //                        }

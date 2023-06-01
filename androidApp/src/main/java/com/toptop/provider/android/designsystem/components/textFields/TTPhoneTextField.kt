@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Divider
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -24,14 +23,21 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.onFocusChanged
-import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.toptop.provider.android.designsystem.icon.TTIcons
+import com.toptop.provider.android.designsystem.theme.BodyLarge
+import com.toptop.provider.android.designsystem.theme.ColorDivider
+import com.toptop.provider.android.designsystem.theme.ColorOnBackground
+import com.toptop.provider.android.designsystem.theme.ColorOutline
+import com.toptop.provider.android.designsystem.theme.ColorPrimary
 import com.toptop.provider.android.designsystem.theme.LocalStrings
+import com.toptop.provider.android.designsystem.theme.ShapeMedium
 
 @Composable
 fun TTPhoneTextField(
@@ -47,11 +53,11 @@ fun TTPhoneTextField(
     ) {
         Text(
             text = LocalStrings.current.yourNumber,
-            style = MaterialTheme.typography.bodyMedium,
+            style = BodyLarge,
             color = if (isFocused) {
-                MaterialTheme.colorScheme.primary
+                ColorPrimary
             } else {
-                MaterialTheme.colorScheme.onBackground
+                ColorOnBackground
             },
             fontWeight = FontWeight.SemiBold
         )
@@ -61,14 +67,14 @@ fun TTPhoneTextField(
             horizontalArrangement = Arrangement.spacedBy(12.dp),
             modifier = Modifier
                 .fillMaxWidth()
-                .clip(MaterialTheme.shapes.medium)
+                .clip(ShapeMedium)
                 .border(
                     width = if (isFocused) (1.5).dp else 1.dp,
-                    shape = MaterialTheme.shapes.medium,
+                    shape = ShapeMedium,
                     color = if (isFocused) {
-                        MaterialTheme.colorScheme.primary
+                        ColorPrimary
                     } else {
-                        MaterialTheme.colorScheme.outline.copy(alpha = 0.35f)
+                        ColorDivider
                     }
                 )
                 .padding(16.dp)
@@ -81,14 +87,14 @@ fun TTPhoneTextField(
 
             Text(
                 text = "+998",
-                style = MaterialTheme.typography.bodyLarge
+                style = BodyLarge
             )
 
             Divider(
                 modifier = Modifier
                     .width(1.dp)
                     .height(20.dp),
-                color = MaterialTheme.colorScheme.outline.copy(alpha = 0.35f)
+                color = ColorDivider
             )
 
             BasicTextField(
@@ -99,8 +105,8 @@ fun TTPhoneTextField(
                     .onFocusChanged {
                         isFocused = it.isFocused
                     },
-                textStyle = MaterialTheme.typography.bodyLarge.copy(
-                    color = MaterialTheme.colorScheme.onBackground
+                textStyle = BodyLarge.copy(
+                    color = ColorOnBackground
                 ),
                 singleLine = true,
                 enabled = isEnabled,
@@ -109,18 +115,13 @@ fun TTPhoneTextField(
                     keyboardType = KeyboardType.Phone,
                     imeAction = imeAction
                 ),
-                cursorBrush = Brush.horizontalGradient(
-                    colors = listOf(
-                        MaterialTheme.colorScheme.outline,
-                        MaterialTheme.colorScheme.outline
-                    )
-                ),
+                cursorBrush = SolidColor(ColorOutline),
                 decorationBox = { innerTextField ->
                     if (value.isEmpty()) {
                         Text(
                             text = "90 000 00 00",
-                            style = MaterialTheme.typography.bodyLarge,
-                            color = MaterialTheme.colorScheme.outline,
+                            style = BodyLarge,
+                            color = ColorOutline,
                             overflow = TextOverflow.Ellipsis
                         )
                     }
@@ -129,4 +130,13 @@ fun TTPhoneTextField(
             )
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun TTPhoneTextFieldPreview() {
+    TTPhoneTextField(
+        value = "",
+        onValueChange = {}
+    )
 }

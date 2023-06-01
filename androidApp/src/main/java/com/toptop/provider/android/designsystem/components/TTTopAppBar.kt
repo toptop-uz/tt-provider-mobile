@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextOverflow
+import com.toptop.provider.android.designsystem.theme.TitleLarge
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -22,7 +23,7 @@ fun TTTopAppBar(
             if (title != null) {
                 Text(
                     text = title,
-                    style = MaterialTheme.typography.titleLarge,
+                    style = TitleLarge,
                     overflow = TextOverflow.Ellipsis,
                     maxLines = 1
                 )

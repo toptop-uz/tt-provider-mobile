@@ -1,12 +1,45 @@
 package com.toptop.provider.android.designsystem.theme
 
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Typography
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.toptop.provider.android.R
+
+val HeadlineLarge: TextStyle
+    @Composable
+    @ReadOnlyComposable
+    get() = MaterialTheme.typography.headlineLarge
+
+val TitleLarge: TextStyle
+    @Composable
+    @ReadOnlyComposable
+    get() = MaterialTheme.typography.titleLarge
+
+val TitleMedium: TextStyle
+    @Composable
+    @ReadOnlyComposable
+    get() = MaterialTheme.typography.titleMedium
+
+val TitleSmall: TextStyle
+    @Composable
+    @ReadOnlyComposable
+    get() = MaterialTheme.typography.titleSmall
+
+val BodyLarge: TextStyle
+    @Composable
+    @ReadOnlyComposable
+    get() = MaterialTheme.typography.bodyLarge
+
+val BodyMedium: TextStyle
+    @Composable
+    @ReadOnlyComposable
+    get() = MaterialTheme.typography.bodyMedium
 
 val Typography = Typography(
     displayLarge = TextStyle(

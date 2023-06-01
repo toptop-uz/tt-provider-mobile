@@ -3,7 +3,6 @@ package com.toptop.provider.android.designsystem.components.textFields
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -13,6 +12,9 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.VisualTransformation
 import com.toptop.provider.android.designsystem.components.TTIcon
+import com.toptop.provider.android.designsystem.theme.BodyLarge
+import com.toptop.provider.android.designsystem.theme.ColorOutline
+import com.toptop.provider.android.designsystem.theme.ShapeMedium
 
 @Composable
 fun TTTextField(
@@ -30,12 +32,12 @@ fun TTTextField(
         modifier = Modifier.fillMaxWidth(),
         value = value,
         onValueChange = onValueChange,
-        textStyle = MaterialTheme.typography.bodyLarge,
+        textStyle = BodyLarge,
         label = { Text(text = hint) },
         placeholder = {
             Text(
                 text = placeholder,
-                color = MaterialTheme.colorScheme.outline
+                color = ColorOutline
             )
         },
         trailingIcon = {
@@ -43,7 +45,7 @@ fun TTTextField(
                 IconButton(onClick = { trailingIconClick?.invoke() }) {
                     TTIcon(
                         painter = it,
-                        tint = MaterialTheme.colorScheme.outline
+                        tint = ColorOutline
                     )
                 }
             }
@@ -55,6 +57,6 @@ fun TTTextField(
             imeAction = imeAction
         ),
         singleLine = true,
-        shape = MaterialTheme.shapes.medium
+        shape = ShapeMedium
     )
 }

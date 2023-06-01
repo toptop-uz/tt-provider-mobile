@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -20,12 +19,21 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.toptop.provider.android.core.extensions.clickableSingle
 import com.toptop.provider.android.designsystem.components.TTIcon
 import com.toptop.provider.android.designsystem.components.buttons.TTFilledButton
 import com.toptop.provider.android.designsystem.icon.TTIcons
+import com.toptop.provider.android.designsystem.theme.BodyLarge
+import com.toptop.provider.android.designsystem.theme.ColorDivider
+import com.toptop.provider.android.designsystem.theme.ColorOnBackground
+import com.toptop.provider.android.designsystem.theme.ColorOutline
+import com.toptop.provider.android.designsystem.theme.ColorPrimary
 import com.toptop.provider.android.designsystem.theme.LocalStrings
+import com.toptop.provider.android.designsystem.theme.ShapeMedium
+import com.toptop.provider.android.designsystem.theme.TitleLarge
+import com.toptop.provider.android.designsystem.theme.TitleMedium
 import com.toptop.provider.android.navigation.NavigationTree
 import com.toptop.provider.data.model.type.LanguageType
 import com.toptop.provider.presentation.selectLanguage.SelectLanguageEvent
@@ -60,14 +68,14 @@ fun SelectLanguageScreen(
             ) {
                 Text(
                     text = LocalStrings.current.chooseYourLanguage,
-                    style = MaterialTheme.typography.titleLarge,
+                    style = TitleLarge,
                     fontWeight = FontWeight.Bold
                 )
 
                 Text(
                     text = LocalStrings.current.pleaseSelectLanguage,
-                    style = MaterialTheme.typography.bodyLarge,
-                    color = MaterialTheme.colorScheme.outline
+                    style = BodyLarge,
+                    color = ColorOutline
                 )
             }
         }
@@ -125,14 +133,14 @@ private fun LanguageItem(
         horizontalArrangement = Arrangement.spacedBy(16.dp),
         modifier = Modifier
             .fillMaxWidth()
-            .clip(MaterialTheme.shapes.medium)
+            .clip(ShapeMedium)
             .border(
                 width = if (isSelected) (1.5).dp else 1.dp,
-                shape = MaterialTheme.shapes.medium,
+                shape = ShapeMedium,
                 color = if (isSelected) {
-                    MaterialTheme.colorScheme.primary
+                    ColorPrimary
                 } else {
-                    MaterialTheme.colorScheme.outline.copy(alpha = 0.35f)
+                    ColorDivider
                 }
             )
             .clickableSingle(onClick = onClick)
@@ -146,21 +154,28 @@ private fun LanguageItem(
 
         Text(
             text = title,
-            style = MaterialTheme.typography.titleMedium,
+            style = TitleMedium,
             color = if (isSelected) {
-                MaterialTheme.colorScheme.primary
+                ColorPrimary
             } else {
-                MaterialTheme.colorScheme.onBackground
+                ColorOnBackground
             }
         )
 
         if (isSelected) {
             Spacer(modifier = Modifier.weight(1f))
 
-            TTIcon(
-                imageVector = TTIcons.Check,
-                color = MaterialTheme.colorScheme.primary
-            )
+            TTIcon(imageVector = TTIcons.Check)
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun SelectLanguageScreenPreview() {
+    SelectLanguageScreen(
+        state = SelectLanguageState(),
+        onEvent = {},
+        onNavigate = {}
+    )
 }

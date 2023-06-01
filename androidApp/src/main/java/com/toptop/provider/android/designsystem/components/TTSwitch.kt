@@ -14,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.unit.dp
+import com.toptop.provider.android.designsystem.theme.BodyLarge
 
 @Composable
 fun TTSwitch(
@@ -28,7 +29,7 @@ fun TTSwitch(
         title = {
             Text(
                 text = title,
-                style = MaterialTheme.typography.bodyLarge,
+                style = BodyLarge,
                 modifier = Modifier.weight(1f)
             )
         },

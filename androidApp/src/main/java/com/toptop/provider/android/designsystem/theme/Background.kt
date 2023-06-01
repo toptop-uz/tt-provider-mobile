@@ -12,3 +12,6 @@ data class BackgroundTheme(
 )
 
 val LocalBackgroundTheme = staticCompositionLocalOf { BackgroundTheme() }
+
+val LightBackgroundTheme = BackgroundTheme(color = md_theme_light_background)
+val DarkBackgroundTheme = BackgroundTheme(color = md_theme_dark_background)

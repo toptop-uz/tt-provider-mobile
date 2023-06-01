@@ -6,6 +6,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.toptop.provider.android.designsystem.theme.ColorOnBackground
+import com.toptop.provider.android.designsystem.theme.ColorOnPrimary
+import com.toptop.provider.android.designsystem.theme.ColorPrimary
 
 object TTButtonDefaults {
 
@@ -23,15 +26,15 @@ object TTButtonDefaults {
 
     @Composable
     fun filledButtonColors(
-        containerColor: Color = MaterialTheme.colorScheme.primary,
-        contentColor: Color = MaterialTheme.colorScheme.onPrimary
+        containerColor: Color = ColorPrimary,
+        contentColor: Color = ColorOnPrimary
     ) = ButtonDefaults.buttonColors(
         containerColor = containerColor,
         contentColor = contentColor,
-        disabledContainerColor = MaterialTheme.colorScheme.onBackground.copy(
+        disabledContainerColor = ColorOnBackground.copy(
             alpha = DisabledButtonContainerAlpha
         ),
-        disabledContentColor = MaterialTheme.colorScheme.onBackground.copy(
+        disabledContentColor = ColorOnBackground.copy(
             alpha = DisabledButtonContentAlpha
         )
     )
@@ -39,7 +42,7 @@ object TTButtonDefaults {
     @Composable
     fun textButtonColors(
         containerColor: Color = Color.Transparent,
-        contentColor: Color = MaterialTheme.colorScheme.onBackground
+        contentColor: Color = ColorOnBackground
     ) = ButtonDefaults.textButtonColors(
         containerColor = containerColor,
         contentColor = contentColor,
